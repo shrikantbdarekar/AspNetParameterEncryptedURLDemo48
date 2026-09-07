@@ -33,9 +33,9 @@ Patient.aspx?token=t92hz_GhdoTPVF8-REq92C9mUjEYjIjbyscpkDAeA9d...
   HyperLink.NavigateUrl         Browser navigates to         SecurePage.OnPreLoad
   = "Patient.aspx?id=5"         "Patient.aspx?token=..."     decrypts token,
                                                              rewrites query string
-  
-  SecureControlProcessor       加密 applied automatically     Request.QueryString["id"]
-  encrypts on OnPreRender       by SecurePage pipeline       == "5" (transparent)
+
+  SecureControlProcessor       Encryption applied            Request.QueryString["id"]
+  encrypts on OnPreRender       automatically by pipeline    == "5" (transparent)
 ```
 
 ### Outgoing (Encryption)
@@ -106,11 +106,11 @@ For URLs outside HyperLink/HtmlAnchor controls, use `SecureUrlHelper`:
 ### JavaScript (`window.location`, `window.open`)
 
 ```csharp
-// In code-behind — store encrypted URL in HiddenField
+// In code-behind -- store encrypted URL in HiddenField
 hfUrl.Value = SecureUrlHelper.Secure(
     "Patient.aspx?PatientID=123&Name=John");
 
-// In markup — read from HiddenField client-side
+// In markup -- read from HiddenField client-side
 <script>
     window.location.href = document.getElementById('<%= hfUrl.ClientID %>').value;
 </script>
